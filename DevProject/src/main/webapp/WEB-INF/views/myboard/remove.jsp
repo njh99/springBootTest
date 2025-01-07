@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>list page</h1>
+	<h1>remove page</h1>
+	<form method="post" action="/myboard/post">
+		<button type="submit" name="remove">삭제</button>
+	</form>
+	<a href="/myboard/get?list">목록</a>
 </body>
 </html>

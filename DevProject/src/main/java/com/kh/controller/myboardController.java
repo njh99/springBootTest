@@ -12,37 +12,50 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/myboard")
 public class myboardController {
 	
-	@GetMapping("/register")
+	@GetMapping(value="/get", params="register")
 	public String registerGet() {
-		log.info("register Get방식");
-		return"success";
+		log.info("register 파라미터 get방식");
+		return"/myboard/register";
 	}
 	
-	@PostMapping("/register")
+	@PostMapping(value="/post", params="register")
 	public String registerPost() {
-		log.info("register Post방식");
-		return "success";
+		log.info("register 파라미터 Post방식");
+		return "/myboard/list";
 	}
-	@GetMapping("/modify")
+	@GetMapping(value="/get", params="modify")
 	public String modifyGet() {
-		log.info("modify Get방식");
-		return "success";
+		log.info("register 파라미터 get방식");
+		return"/myboard/modify";
 	}
 	
-	@PostMapping("/modify")
+	@PostMapping(value="/post", params="modify")
 	public String modifyPost() {
 		log.info("modify Post방식");
-		return "success";
-	}
-	@GetMapping("/list")
-	public String listGet() {
-		log.info("list Get방식");
-		return "success";
+		return"/myboard/list";
 	}
 	
-	@PostMapping("/remove")
-	public String remove() {
-		log.info("modify Post방식");
-		return "success";
+	@GetMapping(value="/get", params="list")
+	public String listGet() {
+		log.info("list 파라미터 get방식");
+		return "/myboard/list";
+	}
+	
+	@GetMapping(value="/get", params="read")
+	public String readGet() {
+		log.info("read 파라미터 get방식");
+		return "/myboard/read";
+	}
+	
+	@GetMapping(value="/get", params="remove")
+	public String removeGet() {
+		log.info("remove 파라미터 get방식");
+		return"/myboard/remove";
+	}
+	
+	@PostMapping(value="/post", params="remove")
+	public String removePost() {
+		log.info("remove Post방식");
+		return"/myboard/list";
 	}
 }
