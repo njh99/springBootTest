@@ -14,11 +14,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Data
-public class Board {
-	private int boardNo;
-	private String tilte;
-	private String content;
-	private String writer;
-	private Date regDate;
+public class Member {
 	
+	private String userId;
+	private String password;
+	private int coin;	
+	private Date date;	
 }
