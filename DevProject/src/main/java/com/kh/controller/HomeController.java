@@ -33,6 +33,13 @@ public class HomeController {
 		return "home"; // WEB-INF/views/home.jsp로 찾아서 보여줌
 	}
 	
+	@RequestMapping(value = "/registerAjaxFileUpForm", method = RequestMethod.GET)
+	public String registerAjaxFileUpForm() {
+	log.info("registerAjaxFileUpForm");
+	return "registerAjaxFileUpForm"; // 뷰 파일명
+	}
+
+	
 	@RequestMapping(value = "/memberInsert", method = RequestMethod.GET)
 	public String memberInsert() {
 		
