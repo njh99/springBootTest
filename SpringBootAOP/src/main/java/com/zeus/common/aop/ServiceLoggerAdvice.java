@@ -18,8 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Aspect
 public class ServiceLoggerAdvice {
-	
-	//핵심코드가 실행전에 잘동
+
+	// 핵심코드가 실행전에 잘동
 	/*
 	 * @Before("execution(* com.zeus.service.BoardService*.*(..))") //포인트컷 public
 	 * void startLog(JoinPoint jp) { //조인포인트
@@ -28,8 +28,8 @@ public class ServiceLoggerAdvice {
 	 * log.info("ServiceLoggerAdvice.startLog jp.agrs"+Arrays.toString(jp.getArgs())
 	 * ); log.info("======================================================="); }
 	 */
-	
-	//조인포인트(핵심코드에서) 실행후에 작동
+
+	// 조인포인트(핵심코드에서) 실행후에 작동
 	/*
 	 * @AfterReturning(pointcut =
 	 * "execution(* com.zeus.service.BoardService*.*(..))",returning = "result")
@@ -38,26 +38,34 @@ public class ServiceLoggerAdvice {
 	 * log.info("ServiceLoggerAdvice.stopLog"+result.toString()); }
 	 * log.info("****************************************************"); }
 	 */
-	//조인포인트(핵심코드에서 예외가 발생했을때 작동)
-	@AfterThrowing(pointcut = "execution(* com.zeus.service.BoardService*.*(..))",throwing = "e") //포인트컷
-	public void exceptionLog(JoinPoint jp,Exception e) {  //조인포인트
+	// 조인포인트(핵심코드에서 예외가 발생했을때 작동)
+	@AfterThrowing(pointcut = "execution(* com.zeus.service.BoardService*.*(..))", throwing = "e") // 포인트컷
+	public void exceptionLog(JoinPoint jp, Exception e) { // 조인포인트
 		log.info("ServiceLoggerAdvice.stopLog");
-		if(e != null) {
-			log.info("ServiceLoggerAdvice.exceptionLog"+e.toString());
+		if (e != null) {
+			log.info("ServiceLoggerAdvice.exceptionLog" + e.toString());
 		}
 		log.info("++++++++++++++++++++++++++++++++++++++++");
 	}
-	
-	//조인포인트(핵심코드) 전, 후 작동
+
+	// 조인포인트(핵심코드) 전, 후 작동
 	@Around("execution(* com.zeus.service.BoardService*.*(..))")
-	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable{
+	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable {
+		// 앞에서 advice 실행한다.
 		long startTime = System.currentTimeMillis();
-		Object obj = pjp.proceed();
+		// 조인포인트(핵심코드) 실행.
+		Object obj = null;
+		try {
+			obj = pjp.proceed();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		// 뒤에서 advice 실행한다.
 		long stopTime = System.currentTimeMillis();
-		log.info(pjp.getSignature().getName()+":"+(stopTime - startTime));
+		// 부산물정보 획득
+		log.info(pjp.getSignature().getName() + ":" + (stopTime - startTime));
 		log.info("#########################################");
 		return obj;
 	}
-	
-	
+
 }
