@@ -15,19 +15,24 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 	<div align="center">
 		<h2>
-			<spring:message code="codegroup.header.register" />
+			<spring:message code="codedetail.header.register" />
 		</h2>
-		<form:form modelAttribute="codeGroup" action="/codegroup/register">
-			<table class="input_table">
+		<form:form modelAttribute="codeDetail" action="/codedetail/list" method="post">
+			<table>
 				<tr>
-					<td><spring:message code="codegroup.groupCode" /></td>
-					<td><form:input path="groupCode" /></td>
+					<td><spring:message code="codedetail.groupCode" /></td>
+					<td><form:select path="groupCode" items="${groupCodeList}" itemValue="value" itemLabel="label" /></td>
 					<td><font color="red"><form:errors path="groupCode" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="codegroup.groupName" /></td>
-					<td><form:input path="groupName" /></td>
-					<td><font color="red"><form:errors path="groupName" /></font></td>
+					<td><spring:message code="codedetail.codeValue" /></td>
+					<td><form:input path="codeValue" /></td>
+					<td><font color="red"><form:errors path="codeValue" /></font></td>
+				</tr>
+				<tr>
+					<td><spring:message code="codedetail.codeName" /></td>
+					<td><form:input path="codeName" /></td>
+					<td><font color="red"><form:errors path="codeName" /></font></td>
 				</tr>
 			</table>
 		</form:form>
@@ -45,7 +50,7 @@
 </html>
 <script>
 	$(document).ready(function() {
-		var formObj = $("#codeGroup");
+		var formObj = $("#codeDetail");
 		$("#btnRegister").on("click", function() {
 			formObj.submit();
 		});

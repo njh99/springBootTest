@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<link rel="stylesheet" href="/css/codegroup.css" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 		<h2>
 			<spring:message code="codegroup.header.register" />
 		</h2>
-		<form:form modelAttribute="codeGroup" action="/codegroup/register">
+		<form:form modelAttribute="codeGroup" action="/codegroup/modify">
 			<table class="input_table">
 				<tr>
 					<td><spring:message code="codegroup.groupCode" /></td>
@@ -32,8 +33,8 @@
 			</table>
 		</form:form>
 		<div>
-			<button type="button" id="btnRegister">
-				<spring:message code="action.register" />
+			<button type="button" id="btnModify">
+				<spring:message code="action.modify" />
 			</button>
 			<button type="button" id="btnList">
 				<spring:message code="action.list" />
@@ -46,7 +47,7 @@
 <script>
 	$(document).ready(function() {
 		var formObj = $("#codeGroup");
-		$("#btnRegister").on("click", function() {
+		$("#btnModify").on("click", function() {
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {

@@ -31,6 +31,9 @@ nav ul.sport_event {
 	<nav>
 		<ul class="sport_event">
 			<li><a href="/"><spring:message code="header.home" /></li>
+			<li><a href="/codegroup/list"><spring:message code="codegroup.header.list" /></li>
+			<!-- 코드 관리를 메뉴에 추가한다. -->
+			<li><a href="/codedetail/list"><spring:message code="menu.codedetail.list" /></a></li>
 			<li><a href="">야구</a></li>
 			<li><a href="">해외야구</a></li>
 			<li><a href="">축구</a></li>
