@@ -135,7 +135,8 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- AOP를 위한 라이브러리 의존 관계 정의 -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/springboot-starter-aop -->
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.boot/springboot-starter-aop -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -144,7 +145,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>		
+		</dependency>
 		<!-- jstl 에 대한 두 개 라이브러리-->
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
@@ -166,6 +167,12 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.8.0</version>
 		</dependency>
+		<!-- 시큐리티 태그 의존성 설정 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
