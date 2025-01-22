@@ -13,11 +13,12 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+	 <jsp:include page="/WEB-INF/views/common/carousel.jsp"/>
 	<div align="center">
 		<h2>
 			<spring:message code="codedetail.header.register" />
 		</h2>
-		<form:form modelAttribute="codeDetail" action="/codedetail/list" method="post">
+		<form:form modelAttribute="codeDetail" action="register">
 			<table>
 				<tr>
 					<td><spring:message code="codedetail.groupCode" /></td>
@@ -37,13 +38,14 @@
 			</table>
 		</form:form>
 		<div>
-			<button type="button" id="btnRegister">
+			<button type="submit" id="btnRegister">
 				<spring:message code="action.register" />
 			</button>
-			<button type="button" id="btnList">
+			<button type="submit" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
+
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

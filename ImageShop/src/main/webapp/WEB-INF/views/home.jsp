@@ -10,6 +10,8 @@
 <body>
     <jsp:include page="./common/header.jsp"/>
     <jsp:include page="./common/menu.jsp"/>
+    <jsp:include page="./common/carousel.jsp"/>
+    
     <div align="center">
         <h1>
             <spring:message code="common.homeWelcome" />

@@ -7,13 +7,15 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+	 <jsp:include page="/WEB-INF/views/common/carousel.jsp"/>
 	<div align="center">
 		<h2>
 			<spring:message code="codedetail.header.list" />
 		</h2>
 		<a href="register"><spring:message code="action.new" /></a>
 	</div>
-	<table border="1">
+	<div align="center">
+	<table border="1" >
 		<tr>
 			<th align="center" width="160"><spring:message code="codedetail.groupCode" /></th>
 			<th align="center" width="160"><spring:message code="codedetail.codeValue" /></th>
@@ -28,18 +30,17 @@
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${list}" var="codeDetail">
+				<c:forEach items="${list}" var="codeGroup">
 					<tr>
-						<td align="center">${codeDetail.groupCode}</td>
-						<td align="center">${codeDetail.codeValue}</td>
-						<td align="left"><a href="/codedetail/read?groupCode=${codeDetail.groupCode}&codeValue=${codeDetail.codeValue}">${codeDetail.codeName}</a></td>
-						<td align="center">${codeDetail.sortSeq}</td>
-						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${codeDetail.regDate}" /></td>
+						<td align="center">${codeGroup.groupCode}</td>
+						<td align="left"><a href="/codegroup/read?groupCode=${codeGroup.groupCode}">${codeGroup.groupName} </a></td>
+						<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${codeGroup.regDate}" /></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
+	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

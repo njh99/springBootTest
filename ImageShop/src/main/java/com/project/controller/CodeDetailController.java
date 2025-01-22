@@ -22,8 +22,6 @@ public class CodeDetailController {
 
 	@Autowired
 	private CodeDetailService codeDetailService;
-
-	// 그룹코드에서 사용되고 있는 정보 관리
 	@Autowired
 	private CodeService codeService;
 

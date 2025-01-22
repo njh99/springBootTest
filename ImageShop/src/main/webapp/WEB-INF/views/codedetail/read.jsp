@@ -13,6 +13,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+	 <jsp:include page="/WEB-INF/views/common/carousel.jsp"/>
 	<div align="center">
 		<h2>
 			<spring:message code="codedetail.header.read" />
