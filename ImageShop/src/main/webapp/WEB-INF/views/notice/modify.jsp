@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<link rel="stylesheet" href="/css/board.css" />
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/css/notice.css" />
 <meta charset="UTF-8">
 <script type="text/javascript" src="/css/codegroup.css"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,45 +19,42 @@
 	<jsp:include page="/WEB-INF/views/common/carousel.jsp" />
 	<div align="center">
 		<h2>
-			<spring:message code="board.header.register" />
+			<spring:message code="notice.header.modify" />
 		</h2>
-		<form:form modelAttribute="board" action="register">
+		<form:form modelAttribute="notice" action="modify">
+			<form:hidden path="noticeNo" />
 			<table>
 				<tr>
-					<td><spring:message code="board.title" /></td>
+					<td><spring:message code="notice.title" /></td>
 					<td><form:input path="title" /></td>
 					<td><font color="red"><form:errors path="title" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" readonly="true" /></td>
-					<td><font color="red"><form:errors path="writer" /></font></td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.content" /></td>
+					<td><spring:message code="notice.content" /></td>
 					<td><form:textarea path="content" /></td>
 					<td><font color="red"><form:errors path="content" /></font></td>
 				</tr>
 			</table>
 		</form:form>
 		<div>
-			<sec:authorize access="isAuthenticated()">
-				<button type="button" id="btnRegister">
-					<spring:message code="action.register" />
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<button type="submit" id="btnModify">
+					<spring:message code="action.modify" />
 				</button>
 			</sec:authorize>
-			<button type="button" id="btnList">
+			<button type="submit" id="btnList">
 				<spring:message code="action.list" />
 			</button>
-			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 		</div>
-			
+
+	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
 <script>
 	$(document).ready(function() {
-		var formObj = $("#board");
-		$("#btnRegister").on("click", function() {
+		var formObj = $("#notice");
+		$("#btnModify").on("click", function() {
 			formObj.submit();
 		});
 		$("#btnList").on("click", function() {

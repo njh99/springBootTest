@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <script src="https://kit.fontawesome.com/6498553759.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="mainhomepage.css" />
@@ -24,19 +25,39 @@ main {
 			<i class="fa-solid fa-bars"></i>
 		</button>
 		<div id="myDropdown" class="dropdown-content1">
-			<a href="/"><i class="fa-solid fa-house"></i> <spring:message code="header.home" /> <a href="/codegroup/list"><i class="fa-solid fa-user"></i> <spring:message code="menu.codegroup.list" /></a>
-				<a href="/codedetail/list"><i class="fa-solid fa-magnifying-glass"></i> <spring:message code="menu.codedetail.list" /></a> <a href="/user/list"><i class="fa-solid fa-shield-halved"></i> <spring:message
-						code="menu.user.admin" /></a>
+		<sec:authorize access="!isAuthenticated()">
+				<!-- 회원 게시판를 메뉴에 추가한다. -->
+				<a href="/board/list"><i class="fa-solid fa-clipboard-list"></i><spring:message code="menu.board.member" /></a>
+			</sec:authorize>
+		<!-- 인증된 사용자인 경우 true -->
+			<sec:authorize access="isAuthenticated()">
+				<!-- 관리자 권한을 가진 사용자인 경우 true -->
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<!-- 그룹코드 관리를 메뉴에 추가한다. -->
+					<a href="/codegroup/list"><i class="fa-solid fa-user"></i> <spring:message code="menu.codegroup.list" /></a>
+					<!-- 회원 게시판를 메뉴에 추가한다. -->
+					<a href="/board/list"><i class="fa-solid fa-clipboard-list"></i><spring:message code="menu.board.member" /></a>
+					<!-- 코드 관리를 메뉴에 추가한다. -->
+					<a href="/codedetail/list"><i class="fa-solid fa-magnifying-glass"></i><spring:message code="menu.codedetail.list" /></a>
+					<!-- 회원 관리를 메뉴에 추가한다. -->
+					<a href="/user/list"><i class="fa-solid fa-shield-halved"></i><spring:message code="menu.user.admin" /></a>
+				</sec:authorize>
+				<!-- 회원 권한을 가진 사용자인 경우 true -->
+				<sec:authorize access="hasRole('ROLE_MEMBER')">
+					<!-- 회원 게시판를 메뉴에 추가한다. -->
+					<a href="/board/list"><i class="fa-solid fa-clipboard-list"></i><spring:message code="menu.board.member" /></a>
+				</sec:authorize>
+			</sec:authorize>
+		
 		</div>
 	</div>
-
 	<div class="nav_naver_font">
 		<a class="naver_logo" href="cart.jsp"><i class="fa-solid fa-basket-shopping"></i></a> <a class="sport_logo" href="cart.jsp">CART</a>
 	</div>
 </nav>
 <nav class="top_menu">
 	<div class="header-logo">
-		<i class="fa-solid fa-layer-group"></i> <a href="mainhomepage.jsp">아직 미정</a>
+		<i class="fa-solid fa-layer-group"></i> <a href="mainhomepage.jsp">KTA</a>
 	</div>
 	<ul class="header-menu">
 		<li class="dropdown"><a href="#" class="dropbtn"><img src="/image/media/LaLiga_EA_Sports_2023_Vertical_Logo.svg.png" alt="laliga" class="la"></img></a>
@@ -60,23 +81,16 @@ main {
 			</div></li>
 	</ul>
 	<ul class="header-icons">
-		<li><a href="login.jsp">LOGIN</a></li>
+		<!-- 로그인을 하지 않은 경우 true -->
+			<sec:authorize access="!isAuthenticated()">
+				<!-- 회원 게시판를 메뉴에 추가한다. -->
+				<a href="/auth/login">LOGIN</a></td>
+			</sec:authorize>
+		<li><sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal.username" /> 님 <a href="/auth/logout"> <spring:message code="header.logout" /></a>
+			</sec:authorize></li>
 	</ul>
 </nav>
-<div align="right">
-	<table>
-		<tr>
-			<!-- 로그인을 하지 않은 경우 로그인 페이지로 이동할 수 있게 한다. -->
-			<sec:authorize access="!isAuthenticated()">
-				<td width="80"><a href="/user/register"><spring:message code="header.joinMember" /></a></td>
-				<td width="80"><a href="/auth/login"><spring:message code="header.login" /></a></td>
-			</sec:authorize>
-			<!-- 로그인을 거친 인증된 사용자인 경우 사용자명을 보여주고 로그아웃 페이지로 이동할 수 있게 한다. -->
-			<sec:authorize access="isAuthenticated()">
-				<td width="180"><sec:authentication property="principal.username" /> 님 <a href="/auth/logout"> <spring:message code="header.logout" /></a></td>
-			</sec:authorize>
-		</tr>
-	</table>
-</div>
+
 
 <hr>

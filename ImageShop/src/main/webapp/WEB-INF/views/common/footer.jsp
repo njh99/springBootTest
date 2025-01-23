@@ -5,7 +5,7 @@ li {
 }
 
 footer {
-	height: 240px;
+	height: 120px;
 	background-color: white;
 }
 

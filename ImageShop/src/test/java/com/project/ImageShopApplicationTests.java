@@ -8,6 +8,7 @@ class ImageShopApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
