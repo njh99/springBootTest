@@ -18,3 +18,13 @@
 		</div>
 	</div>
 </section>
+<!-- PC ë°°ë1 -->
+<div class="floBanPc1 hidden-md hidden-sm hidden-xs">
+	<a href="/notice/list" target="_blank"> <img src="/image/media/픽토그램.jpg" width="80px;" height="80px;">
+	</a>
+</div>
+<!-- PC ë°°ë2 -->
+<div class="floBanPc2 hidden-md hidden-sm hidden-xs">
+	<a href="/coin/listPay" target="_blank"> <img src="/image/media/btn_side_cart.png" width="80px;" height="80px;">
+	</a>
+</div>
