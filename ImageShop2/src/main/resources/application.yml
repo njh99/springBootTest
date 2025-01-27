@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: ImageShop
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  security:
+    user:
+      password: test
+      roles: MEMBER
+      name: test
+  datasource:
+    password: '123456'
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: imageshop
+    hikari:
+      maximum-pool-size: '100'
+      connection-test-query: SELECT 1 FROM DUAL
+      minimum-idle: '8'
+    url: jdbc:oracle:thin:@localhost:1521:xe
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  messages:
+    basename: message.message
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mappers/*/.xml
+upload:
+  path: C:/upload
