@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeus.backend.mapper.ProductMapper">
+	<select id="list" resultType="java.util.Map">
+		select * from product2
+		where product_name like #{product_name}
+		order by product_name
+	</select>
+	<insert id="insert">
+		insert into product2 (product_code, product_name, description, price,
+		filename)
+		values (product2_seq.NEXTVAL, #{product_name}, #{description}, #{price},
+		#{filename} )
+	</insert>
+	<select id="detail" resultType="java.util.Map">
+		select * from product2 where product_code=#{product_code}
+	</select>
+	<update id="update">
+		update product2
+		set product_name=#{product_name}, price=#{price},
+		description=#{description}, filename=#{filename}
+		where product_code=#{product_code}
+	</update>
+	<delete id="delete">
+		delete from product2
+		where product_code=#{product_code}
+	</delete>
+	<select id="filename" resultType="String">
+		select filename from product2 where product_code=#{product_code}
+	</select>
+
+</mapper>
